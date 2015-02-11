@@ -215,7 +215,8 @@ def create_ami(host_instance, args, config, instance_config, ssh_key,
             put('additional_packages', '/tmp/additional_packages')
         yum = 'yum -d 1 -c {0}/etc/yum-local.cfg -y --installroot={0} '.format(
             mount_point)
-        # groupinstall emulates the %packages section of the kickstart config
+        # groupinstall emulates the %packages section of the kickstart config, which
+        # defaults to Core and Base.
         run('%s groupinstall "`cat /tmp/groupinstall`"' % yum)
         # and this attempts to emulate the additional packages that Anaconda installs
         # as it needs them.
